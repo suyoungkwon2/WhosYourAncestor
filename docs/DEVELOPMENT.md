@@ -1,5 +1,15 @@
 # 🚀 개발 워크플로우 가이드
 
+## 🌐 프로젝트 정보
+
+### **📁 저장소**
+- **GitHub**: https://github.com/suyoungkwon2/WhosYourAncestor
+- **Vercel**: https://vercel.com/su-young-kwons-projects/whos-your-ancestor
+
+### **🚀 배포 URL**
+- **프로덕션**: https://whos-your-ancestor-kjs9ckaai-su-young-kwons-projects.vercel.app
+- **도메인**: jamyeah.com (연결 예정)
+
 ## 🌿 브랜치 전략
 
 ### **Main 브랜치 (Production)**
@@ -60,20 +70,27 @@ npm run lint
 - **개발**: `.env.local` (Git에 포함되지 않음)
 - **프로덕션**: Vercel 대시보드에서 설정
 
+### **브라우저 접속**
+- **로컬 개발**: http://localhost:5173
+- **프로덕션**: https://whos-your-ancestor-kjs9ckaai-su-young-kwons-projects.vercel.app
+
 ## 📋 현재 진행 상황
 
 ### **✅ 완료된 작업**
 - [x] React + Vite 프로젝트 설정
 - [x] Tailwind CSS 스타일링
-- [x] GitHub 저장소 연결
-- [x] Vercel 자동 배포 설정
+- [x] GitHub 저장소 연결 (https://github.com/suyoungkwon2/WhosYourAncestor)
+- [x] Vercel 자동 배포 설정 (https://vercel.com/su-young-kwons-projects/whos-your-ancestor)
 - [x] 브랜치 전략 설정 (main/dev)
+- [x] CI/CD 파이프라인 구축
+- [x] 개발 워크플로우 문서화
 
 ### **🔄 진행 중인 작업**
 - [ ] TensorFlow.js 얼굴 인식 기능
 - [ ] 다국어 지원 (한/영/일/중)
 - [ ] 얼굴 업로드 UI
 - [ ] 결과 시각화
+- [ ] jamyeah.com 도메인 연결
 
 ### **📅 예정된 작업**
 - [ ] Google Analytics 연동
