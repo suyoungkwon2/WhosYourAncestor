@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-개선된 Colab 크롤러 v3 - 고화질 이미지 & 전체 1단계 국가 수집
+개선된 Colab 크롤러 v4 - 2단계 확장 국가 수집
 """
 
 import os
@@ -352,76 +352,86 @@ class HighQualityColabCrawler:
             self.driver.quit()
             print("✅ 드라이버 종료")
 
+
 def get_priority_countries():
-    """1단계 핵심 국가 목록 반환"""
+    """2단계 확장 국가 목록 반환"""
     return [
-        # # 동아시아 (가장 중요)
-        # ("japanese", "female"),
-        # ("japanese", "male"),
-        # ("korean", "female"),
-        # ("korean", "male"),
-        # ("chinese", "female"),
-        # ("chinese", "male"),
-        # ("taiwanese", "female"),
-        # ("taiwanese", "male"),
-        # ("hong kong", "female"),
-        # ("hong kong", "male"),
+        # 유럽 확장 (21-30)
+        ("swedish", "female"), ("swedish", "male"),
+        ("norwegian", "female"), ("norwegian", "male"),
+        ("danish", "female"), ("danish", "male"),
+        ("polish", "female"), ("polish", "male"),
+        ("czech", "female"), ("czech", "male"),
+        ("dutch", "female"), ("dutch", "male"),
+        ("belgian", "female"), ("belgian", "male"),
+        ("swiss", "female"), ("swiss", "male"),
+        ("austrian", "female"), ("austrian", "male"),
+        ("irish", "female"), ("irish", "male"),
         
-        # 유럽 (중요)
-        ("british", "female"),
-        ("british", "male"),
-        ("german", "female"),
-        ("german", "male"),
-        ("french", "female"),
-        ("french", "male"),
-        ("italian", "female"),
-        ("italian", "male"),
-        ("spanish", "female"),
-        ("spanish", "male"),
-        ("russian", "female"),
-        ("russian", "male"),
+        # 동남아시아 확장 (31-34)
+        ("vietnamese", "female"), ("vietnamese", "male"),
+        ("filipino", "female"), ("filipino", "male"),
+        ("malaysian", "female"), ("malaysian", "male"),
+        ("singaporean", "female"), ("singaporean", "male"),
         
-        # 남아시아 (중요)
-        ("indian", "female"),
-        ("indian", "male"),
+        # 중남미 확장 (35)
+        ("argentine", "female"), ("argentine", "male"),
         
-        # 중남미 (중요)
-        ("brazilian", "female"),
-        ("brazilian", "male"),
-        ("mexican", "female"),
-        ("mexican", "male"),
-        
-        # 중동 (중요)
-        ("turkish", "female"),
-        ("turkish", "male"),
-        ("iranian", "female"),
-        ("iranian", "male"),
-        
-        # 아프리카 (중요)
-        ("nigerian", "female"),
-        ("nigerian", "male"),
-        
-        # 동남아시아 (중요)
-        ("thai", "female"),
-        ("thai", "male"),
-        ("indonesian", "female"),
-        ("indonesian", "male"),
-        
-        # Indigenous American
-        ("indigenous american", "female"),
-        ("indigenous american", "male"),
+        # 중동 확장 (36-40)
+        ("saudi", "female"), ("saudi", "male"),
+        ("egyptian", "female"), ("egyptian", "male"),
+        ("lebanese", "female"), ("lebanese", "male"),
+        ("jordanian", "female"), ("jordanian", "male"),
+        ("emirati", "female"), ("emirati", "male"),
     ]
+
+def save_progress(completed_countries, total_countries):
+    """진행 상황 저장"""
+    try:
+        progress = {
+            "completed": completed_countries,
+            "total": total_countries,
+            "timestamp": time.time()
+        }
+        
+        with open("/content/progress.json", "w") as f:
+            import json
+            json.dump(progress, f, indent=2)
+        
+        print(f"💾 진행 상황 저장: {len(completed_countries)}/{len(total_countries)} 완료")
+        
+    except Exception as e:
+        print(f"⚠️ 진행 상황 저장 실패: {e}")
+
+def load_progress():
+    """진행 상황 로드"""
+    try:
+        if os.path.exists("/content/progress.json"):
+            with open("/content/progress.json", "r") as f:
+                import json
+                progress = json.load(f)
+            
+            print(f"📂 진행 상황 복구: {len(progress['completed'])}/{len(progress['total'])} 완료")
+            return progress['completed'], progress['total']
+        
+    except Exception as e:
+        print(f"⚠️ 진행 상황 로드 실패: {e}")
+    
+    return [], []
 
 def main():
     """메인 실행"""
-    print("🚀 고화질 Colab 크롤러 v3 시작")
+    print("🚀 고화질 Colab 크롤러 v4 시작 (2단계 확장 국가)")
     
     # 크롤러 생성
     crawler = HighQualityColabCrawler()
     
     try:
-        # 1단계 핵심 국가 목록
+        # 2단계 확장 국가 목록
         priority_countries = get_priority_countries()
+        
+        # 진행 상황 로드
+        completed_countries, _ = load_progress()
         
         base_path = "/content/dataset"
         total_downloaded = 0
@@ -429,6 +439,12 @@ def main():
         print(f"📋 총 {len(priority_countries)}개 카테고리 수집 예정")
         
         for i, (country, gender) in enumerate(priority_countries):
+            # 이미 완료된 국가 건너뛰기
+            country_key = f"{country}_{gender}"
+            if country_key in completed_countries:
+                print(f"⏭️ [{i+1}/{len(priority_countries)}] {country} {gender} 이미 완료됨")
+                continue
+            
             print(f"\n📸 [{i+1}/{len(priority_countries)}] {country} {gender} 수집 중...")
             
             # 검색어 생성
@@ -442,6 +458,10 @@ def main():
             
             print(f"✅ {country} {gender}: {downloaded}장 수집 완료")
             
+            # 진행 상황 저장
+            completed_countries.append(country_key)
+            save_progress(completed_countries, priority_countries)
+            
             # 국가 간 간격 (서버 부하 방지)
             time.sleep(5)
         
@@ -454,8 +474,62 @@ def main():
                 if files:
                     print(f"  {root}: {len(files)}개 파일")
         
+        # 🔥 자동 압축 및 다운로드 추가
+        if os.path.exists(base_path) and total_downloaded > 0:
+            print("\n📦 자동 압축 및 다운로드 시작...")
+            auto_compress_and_download(base_path, total_downloaded)
+        
     finally:
         crawler.close()
+
+def auto_compress_and_download(dataset_path, total_files):
+    """자동 압축 및 다운로드"""
+    try:
+        import zipfile
+        
+        zip_path = "/content/dataset.zip"
+        
+        # 기존 압축 파일 삭제
+        if os.path.exists(zip_path):
+            os.remove(zip_path)
+            print("🗑️ 기존 압축 파일 삭제")
+        
+        print("📦 데이터셋 압축 중...")
+        
+        with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
+            for root, dirs, files_list in os.walk(dataset_path):
+                for file in files_list:
+                    file_path = os.path.join(root, file)
+                    arcname = os.path.relpath(file_path, dataset_path)
+                    zipf.write(file_path, arcname)
+        
+        # 압축 파일 크기 확인
+        zip_size = os.path.getsize(zip_path) / (1024 * 1024)  # MB
+        print(f"✅ 압축 완료: {zip_path} ({zip_size:.1f} MB)")
+        
+        # 안전한 다운로드 시도
+        try:
+            from google.colab import files
+            print("📥 데이터셋 다운로드 시작...")
+            files.download(zip_path)
+            print("🎉 자동 다운로드 완료!")
+            print(f"📁 다운로드된 파일: dataset.zip ({zip_size:.1f} MB)")
+            print(f"📊 총 {total_files}개 파일이 포함되었습니다.")
+            
+        except Exception as download_error:
+            print(f"⚠️ 자동 다운로드 실패: {download_error}")
+            print("\n💡 수동 다운로드 방법:")
+            print("1. 다음 코드를 새 셀에서 실행하세요:")
+            print("   from google.colab import files")
+            print("   files.download('/content/dataset.zip')")
+            print("2. 또는 브라우저에서 직접 다운로드:")
+            print("   - 파일 탐색기에서 /content/dataset.zip 파일을 찾아 다운로드")
+            print("3. 또는 다음 명령어로 다운로드:")
+            print("   !wget --content-disposition /content/dataset.zip")
+        
+    except Exception as e:
+        print(f"❌ 자동 압축/다운로드 실패: {e}")
+        print("💡 수동으로 다운로드 스크립트를 실행하세요.")
 
 # 패키지 설치 및 환경 설정
 if __name__ == "__main__":
