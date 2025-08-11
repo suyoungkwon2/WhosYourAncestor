@@ -1,0 +1,22 @@
+{
+  "labels": [
+    "british_female",
+    "chinese_female",
+    "ethiopian_female",
+    "french_female",
+    "indian_female",
+    "indigenous_female",
+    "japanese_female",
+    "korean_female",
+    "mexican_female",
+    "nigerian_female",
+    "russian_female",
+    "saudi_female"
+  ],
+  "input_shape": [
+    224,
+    224,
+    3
+  ],
+  "num_classes": 12
+}

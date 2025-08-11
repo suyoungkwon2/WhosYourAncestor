@@ -96,8 +96,6 @@ class LargeScaleColabCrawler:
         # 안정성을 위한 추가 옵션
         chrome_options.add_argument('--disable-extensions')
         chrome_options.add_argument('--disable-plugins')
-        chrome_options.add_argument('--disable-images')  # 이미지 로딩 비활성화로 속도 향상
-        chrome_options.add_argument('--disable-javascript')  # JavaScript 비활성화로 안정성 향상
         chrome_options.add_argument('--disable-web-security')
         chrome_options.add_argument('--allow-running-insecure-content')
         chrome_options.add_argument('--disable-features=VizDisplayCompositor')
@@ -528,6 +526,10 @@ class LargeScaleColabCrawler:
                 
                 os.makedirs(save_dir, exist_ok=True)
                 
+                # 현재 폴더의 기존 파일 수를 기준으로 시작 인덱스 결정
+                existing_files = [f for f in os.listdir(save_dir) if f.lower().endswith((".jpg", ".png"))]
+                base_index = len(existing_files)
+                
                 successful_downloads = 0  # 이 쿼리에서 성공한 다운로드 수
                 processed_images = 0  # 처리한 이미지 수
                 
@@ -543,7 +545,7 @@ class LargeScaleColabCrawler:
                         
                         if image_url:
                             # 파일명 생성 (기존 개수 반영)
-                            next_index = start_index + total_downloaded + 1
+                            next_index = base_index + total_downloaded + 1
                             filename = f"{country}_{next_index:04d}.jpg"
                             save_path = os.path.join(save_dir, filename)
                             
@@ -699,13 +701,13 @@ def main():
                 
                 # 저장 경로 설정
                 save_dir = os.path.join(base_path, "female", country)
-            os.makedirs(save_dir, exist_ok=True)
+                os.makedirs(save_dir, exist_ok=True)
 
-            # 기존 파일 수에 맞춰 번호 시작
-            existing = sorted([f for f in os.listdir(save_dir) if f.lower().endswith((".jpg",".png"))])
-            start_index = len(existing)
-            if start_index > 0:
-                print(f"🔢 기존 {start_index}개 파일 발견 - 다음 번호부터 저장")
+                # 기존 파일 수에 맞춰 번호 시작
+                existing = sorted([f for f in os.listdir(save_dir) if f.lower().endswith((".jpg",".png"))])
+                start_index = len(existing)
+                if start_index > 0:
+                    print(f"🔢 기존 {start_index}개 파일 발견 - 다음 번호부터 저장")
                 
                 # 재시도 로직 추가
                 max_retries = 3
@@ -737,8 +739,11 @@ def main():
                 if downloaded > 0:
                     crawler.save_to_google_drive(country, save_dir)
                 
-                # 진행 상황 저장 (더 자주)
-                completed_countries.append(country)
+                # 진행 상황 저장 (성공 시에만 완료 처리)
+                if downloaded >= 300:
+                    completed_countries.append(country)
+                else:
+                    print(f"⚠️ {country}는 목표 미달({downloaded}/300) - 미완료로 유지")
                 save_progress(completed_countries, target_countries)
                 
                 # 국가 간 간격 (서버 부하 방지) - 더 길게
