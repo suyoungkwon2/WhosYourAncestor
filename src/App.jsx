@@ -101,7 +101,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-ivory py-8 px-4 font-sans">
+    <div className="min-h-screen bg-[url('/img_background.png')] bg-cover bg-center py-8 px-4 font-sans">
       <InfoModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
@@ -117,68 +117,73 @@ function App() {
         onChange={handleImageChange}
         className="hidden" 
       />
-      <div className="container max-w-md mx-auto">
+      <div className="container max-w-md mx-auto relative"> {/* positioning context 추가 */}
         {!predictions.length ? (
-          // 홈 화면 - 분석 전
           <>
-            <div className="text-center mb-8">
-              <p className="text-gray-600 mb-2">Select your language</p>
-              <LanguageSelector />
+            {/* 배경 여권 이미지 */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <img src="/img_passport2.png" alt="Passport illustration" className="w-72 h-auto transform translate-y-11" />
             </div>
 
-            <div className="text-center mb-8">
-              <h1 className="text-5xl font-bold text-gray-800 mb-2">{t('home_title')}</h1>
-              <p className="text-lg text-gray-600">{t('home_subtitle')}</p>
-            </div>
+            {/* 전경 콘텐츠 */}
+            <div className="relative">
+              <div className="text-center mb-8">
+                <p className="text-gray-600 mb-2">Select your language</p>
+                <LanguageSelector />
+              </div>
 
-            <div className="flex justify-center my-8">
-              <img src={passportImage} alt="Passport illustration" className="w-48 h-auto drop-shadow-lg" />
-            </div>
-            
-            <div className="flex justify-center space-x-4 mb-6">
-              <button
-                onClick={() => handleGenderSelect('female')}
-                className={`py-2 px-6 rounded-full text-lg transition-colors ${selectedGender === 'female' ? 'bg-purple-500 text-white font-bold' : 'bg-gray-200'}`}
-              >
-                <span className="mr-2">♀</span>{t('gender_female')}
-              </button>
-              <button
-                onClick={() => handleGenderSelect('male')}
-                className="py-2 px-6 rounded-full text-lg bg-gray-200 transition-colors"
-              >
-                <span className="mr-2">♂</span>{t('gender_male')}
-              </button>
-            </div>
+              <div className="text-center mb-8">
+                <h1 className="text-5xl font-bold text-gray-800 mb-2">{t('home_title')}</h1>
+                <p className="text-lg text-gray-600">{t('home_subtitle')}</p>
+              </div>
 
-            <div className="upload-box px-4">
-              <label 
-                htmlFor="imageUpload" 
-                className="block w-full py-4 px-4 text-center bg-purple-500 text-white rounded-xl cursor-pointer hover:bg-purple-600 transition-colors text-xl font-bold"
-              >
-                {t('button_select_photo')}
-              </label>
-              <p className="text-xs text-gray-500 mt-2 text-center">{t('privacy_notice')}</p>
+              {/* 이미지가 있던 공간을 채우기 위한 스페이서 */}
+              <div className="h-64" />
+
+              <div className="flex justify-center space-x-4 mb-6">
+                <button
+                  onClick={() => handleGenderSelect('female')}
+                  className={`py-2 px-6 rounded-full text-lg transition-colors ${selectedGender === 'female' ? 'bg-purple-500 text-white font-bold' : 'bg-gray-200'}`}
+                >
+                  <span className="mr-2">♀</span>{t('gender_female')}
+                </button>
+                <button
+                  onClick={() => handleGenderSelect('male')}
+                  className="py-2 px-6 rounded-full text-lg bg-gray-200 transition-colors"
+                >
+                  <span className="mr-2">♂</span>{t('gender_male')}
+                </button>
+              </div>
+
+              <div className="upload-box px-4">
+                <label 
+                  htmlFor="imageUpload" 
+                  className="block w-full py-4 px-4 text-center bg-purple-500 text-white rounded-xl cursor-pointer hover:bg-purple-600 transition-colors text-xl font-bold"
+                >
+                  {t('button_select_photo')}
+                </label>
+                <p className="text-xs text-gray-500 mt-2 text-center">{t('privacy_notice')}</p>
+              </div>
+
+              {isModelLoading && (
+                <p className="text-center text-gray-600 mt-8">
+                  {t('text_loading_model')}
+                </p>
+              )}
+
+              {uploadedImage && !predictions.length && (
+                <>
+                  <p className="text-center text-gray-600 mt-8">{t('text_analyzing')}</p>
+                  <img 
+                    ref={imageRef} 
+                    src={uploadedImage} 
+                    alt="For analysis" 
+                    className="hidden"
+                    onLoad={handlePredict}
+                  />
+                </>
+              )}
             </div>
-
-            {isModelLoading && (
-              <p className="text-center text-gray-600 mt-8">
-                {t('text_loading_model')}
-              </p>
-            )}
-
-            {uploadedImage && !predictions.length && (
-              <>
-                <p className="text-center text-gray-600 mt-8">{t('text_analyzing')}</p>
-                {/* 분석을 위해 화면에는 보이지 않지만 로드되어야 하는 이미지 */}
-                <img 
-                  ref={imageRef} 
-                  src={uploadedImage} 
-                  alt="For analysis" 
-                  className="hidden"
-                  onLoad={handlePredict}
-                />
-              </>
-            )}
           </>
         ) : (
           // 결과 화면 - 분석 후
