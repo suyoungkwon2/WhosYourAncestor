@@ -1,9 +1,12 @@
 import { useEffect, useState, useRef } from 'react';
 import html2canvas from 'html2canvas';
+import { useTranslation } from 'react-i18next';
 import { initModel, predict } from './ai_model.js';
 import AncestryCard from './components/AncestryCard';
+import LanguageSelector from './components/LanguageSelector';
 
 function App() {
+  const { t } = useTranslation();
   const [isModelLoading, setIsModelLoading] = useState(true);
   const [predictions, setPredictions] = useState([]);
   const [uploadedImage, setUploadedImage] = useState(null);
@@ -81,9 +84,10 @@ function App() {
         {!predictions.length ? (
           // 홈 화면 - 분석 전
           <>
+            <LanguageSelector />
             <div className="text-center mb-8">
-              <h1 className="text-5xl font-bold text-gray-800 mb-2">나의 조상은?!</h1>
-              <p className="text-lg text-gray-600">얼굴 사진으로 혈통을 알아봐요!</p>
+              <h1 className="text-5xl font-bold text-gray-800 mb-2">{t('home_title')}</h1>
+              <p className="text-lg text-gray-600">{t('home_subtitle')}</p>
             </div>
             
             <div className="bg-white rounded-2xl shadow-lg p-6 mb-8">
@@ -99,20 +103,20 @@ function App() {
                   htmlFor="imageUpload" 
                   className="block w-full py-4 px-4 text-center bg-yellow-400 text-gray-800 rounded-xl cursor-pointer hover:bg-yellow-500 transition-colors text-xl font-bold"
                 >
-                  사진 고르기 📸
+                  {t('button_select_photo')}
                 </label>
               </div>
             </div>
 
             {isModelLoading && (
               <p className="text-center text-gray-600">
-                AI 모델을 준비하는 중입니다... (약 10초 소요)
+                {t('text_loading_model')}
               </p>
             )}
 
             {uploadedImage && !predictions.length && (
               <>
-                <p className="text-center text-gray-600">이미지를 분석하는 중입니다...</p>
+                <p className="text-center text-gray-600">{t('text_analyzing')}</p>
                 {/* 분석을 위해 화면에는 보이지 않지만 로드되어야 하는 이미지 */}
                 <img 
                   ref={imageRef} 
@@ -137,7 +141,7 @@ function App() {
               onClick={handleReset}
               className="mt-4 w-full py-3 px-4 bg-gray-400 text-white rounded-xl hover:bg-gray-500 transition-colors font-bold"
             >
-              다시 해보기
+              {t('button_try_again')}
             </button>
           </>
         )}
