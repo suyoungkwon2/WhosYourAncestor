@@ -69,12 +69,12 @@ const AncestryCard = forwardRef(({ image, predictions, onShare }, ref) => {
         </div>
       </div>
 
-      <p className="text-gray-700 text-sm mb-4">
+      <p className="text-gray-700 text-sm mb-4 text-center">
         {getInterpretation()}
       </p>
 
       {/* 해시태그 */}
-      <div className="flex flex-wrap gap-2 mb-4">
+      <div className="flex flex-wrap gap-2 mb-4 justify-center">
         <span className="bg-blue-100 text-blue-800 text-xs px-2.5 py-1 rounded-full">
           {t('hashtag_ancestry')}
         </span>
