@@ -1,11 +1,11 @@
 {
-  "home_title": "¿Quiénes son tus ancestros?",
-  "home_subtitle": "Descubre tus raíces con solo una foto.",
-  "button_select_photo": "Elige una foto 📸",
-  "text_loading_model": "Preparando la IA... ¡espera un poco!",
-  "text_analyzing": "Analizando tu foto...",
+  "home_title": "¿Quiénes son sus ancestros?",
+  "home_subtitle": "Descubra sus raíces con solo una foto.",
+  "button_select_photo": "Seleccione una foto 📸",
+  "text_loading_model": "Preparando la IA... Por favor, espere un momento.",
+  "text_analyzing": "Analizando su foto...",
   "card_title": "Mi tarjeta de ancestros",
-  "card_interpretation": "¡Te pareces más a alguien de {{country}}! Hay un {{percent}}% de coincidencia. Tienes esos rasgos clásicos de {{country}}, ¡seguro!",
+  "card_interpretation": "¡Usted se parece más a alguien de {{country}}! Hay un {{percent}}% de coincidencia. Definitivamente tiene esos rasgos clásicos de {{country}}.",
   "hashtag_ancestry": "#búsquedadeancestros",
   "hashtag_ai_face": "#análisisfacialIA",
   "button_share": "Compartir",
@@ -21,5 +21,6 @@
   "country_mexican": "Mexicano",
   "country_nigerian": "Nigeriano",
   "country_russian": "Ruso",
-  "country_saudi": "Saudí"
+  "country_saudi": "Saudí",
+  "privacy_notice": "¡No se preocupe! Sus fotos nunca se envían a un servidor."
 } 

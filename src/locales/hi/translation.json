@@ -1,11 +1,11 @@
 {
-  "home_title": "तुम्हारा पूर्वज कौन है?",
+  "home_title": "आपके पूर्वज कौन हैं?",
   "home_subtitle": "बस एक तस्वीर से अपनी जड़ें जानें।",
   "button_select_photo": "एक फोटो चुनें 📸",
-  "text_loading_model": "AI तैयार हो रहा है... ज़रा रुको!",
+  "text_loading_model": "AI तैयार हो रहा है... कृपया प्रतीक्षा करें।",
   "text_analyzing": "आपकी तस्वीर का विश्लेषण हो रहा है...",
   "card_title": "मेरा पूर्वज कार्ड",
-  "card_interpretation": "आप सबसे ज्यादा {{country}} के किसी व्यक्ति की तरह दिखते हैं! {{percent}}% मैच है। आप में पक्का वो क्लासिक {{country}} वाले फीचर्स हैं।",
+  "card_interpretation": "आप सबसे ज्यादा {{country}} के किसी व्यक्ति की तरह दिखते हैं! {{percent}}% का मेल है। आप में निश्चित रूप से वे क्लासिक {{country}} विशेषताएँ हैं।",
   "hashtag_ancestry": "#पूर्वजखोज",
   "hashtag_ai_face": "#AIचेहराविश्लेषण",
   "button_share": "शेयर करें",
@@ -21,5 +21,6 @@
   "country_mexican": "मैक्सिकन",
   "country_nigerian": "नाइजीरियाई",
   "country_russian": "रूसी",
-  "country_saudi": "सऊदी अरब"
+  "country_saudi": "सऊदी अरब",
+  "privacy_notice": "चिंता न करें! आपकी तस्वीरें कभी भी सर्वर पर नहीं भेजी जाती हैं।"
 } 

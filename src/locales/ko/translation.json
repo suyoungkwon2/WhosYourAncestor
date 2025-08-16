@@ -1,11 +1,11 @@
 {
-  "home_title": "내 조상은 누구?",
-  "home_subtitle": "얼굴 사진 한 장으로 혈통 분석 시작!",
-  "button_select_photo": "사진 고르기 📸",
-  "text_loading_model": "AI 모델 준비 중... 쫌만 기다려줘!",
-  "text_analyzing": "사진 분석 중...",
-  "card_title": "나의 조상님 카드",
-  "card_interpretation": "너의 얼굴은 {{country}} 사람이랑 제일 닮았어! {{percent}}%나 비슷해. 특히 {{country}} 사람들의 특징이 잘 보이는 듯?",
+  "home_title": "나의 조상은?",
+  "home_subtitle": "얼굴 사진 한 장으로 혈통 분석을 시작해보세요.",
+  "button_select_photo": "사진 선택하기 📸",
+  "text_loading_model": "AI 모델을 준비 중입니다. 잠시만 기다려주세요.",
+  "text_analyzing": "사진을 분석하고 있습니다...",
+  "card_title": "나의 조상 카드",
+  "card_interpretation": "당신의 얼굴은 {{country}} 사람과 가장 닮았네요! {{percent}}%의 유사도를 보입니다. 특히 {{country}} 사람들의 특징이 잘 나타나고 있어요.",
   "hashtag_ancestry": "#조상찾기",
   "hashtag_ai_face": "#AI얼굴분석",
   "button_share": "공유하기",
@@ -21,5 +21,6 @@
   "country_mexican": "멕시코",
   "country_nigerian": "나이지리아",
   "country_russian": "러시아",
-  "country_saudi": "사우디아라비아"
+  "country_saudi": "사우디아라비아",
+  "privacy_notice": "안심하세요! 사진은 서버로 전송되지 않습니다."
 } 

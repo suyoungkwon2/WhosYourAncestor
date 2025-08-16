@@ -79,15 +79,23 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-pink-100 py-8 px-4 font-sans">
+    <div className="min-h-screen bg-ivory py-8 px-4 font-sans">
       <div className="container max-w-md mx-auto">
         {!predictions.length ? (
           // 홈 화면 - 분석 전
           <>
-            <LanguageSelector />
+            <div className="text-center mb-12">
+              <p className="text-gray-600 mb-2">Select your language</p>
+              <LanguageSelector />
+            </div>
+
             <div className="text-center mb-8">
               <h1 className="text-5xl font-bold text-gray-800 mb-2">{t('home_title')}</h1>
               <p className="text-lg text-gray-600">{t('home_subtitle')}</p>
+            </div>
+
+            <div className="flex justify-center my-8">
+              <img src="/img_passport.png" alt="Passport illustration" className="w-48 h-auto drop-shadow-lg" />
             </div>
             
             <div className="bg-white rounded-2xl shadow-lg p-6 mb-8">
@@ -105,6 +113,7 @@ function App() {
                 >
                   {t('button_select_photo')}
                 </label>
+                <p className="text-xs text-gray-500 mt-2 text-center">{t('privacy_notice')}</p>
               </div>
             </div>
 

@@ -13,6 +13,7 @@ export default {
         sans: ['Roboto', 'system-ui', 'sans-serif'],
       },
       colors: {
+        'ivory': '#FAF9F6',
         primary: {
           50: '#eff6ff',
           500: '#3b82f6',

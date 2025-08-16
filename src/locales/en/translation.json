@@ -1,11 +1,11 @@
 {
   "home_title": "Who's Your Ancestor?",
-  "home_subtitle": "Find out your roots with just one pic.",
-  "button_select_photo": "Pick a Photo 📸",
-  "text_loading_model": "Getting the AI ready... hang tight!",
-  "text_analyzing": "Analyzing your pic...",
+  "home_subtitle": "Find out your roots with just one picture.",
+  "button_select_photo": "Select a Photo 📸",
+  "text_loading_model": "Getting the AI ready... Please wait a moment.",
+  "text_analyzing": "Analyzing your picture...",
   "card_title": "My Ancestry Card",
-  "card_interpretation": "You look most like someone from {{country}}! There's a {{percent}}% match. You've got those classic {{country}} features for sure.",
+  "card_interpretation": "You look most like someone from {{country}}! There's a {{percent}}% match. You definitely have those classic {{country}} features.",
   "hashtag_ancestry": "#ancestryfinder",
   "hashtag_ai_face": "#AIfaceanalysis",
   "button_share": "Share",
@@ -21,5 +21,6 @@
   "country_mexican": "Mexican",
   "country_nigerian": "Nigerian",
   "country_russian": "Russian",
-  "country_saudi": "Saudi Arabian"
+  "country_saudi": "Saudi Arabian",
+  "privacy_notice": "Don't worry! Your photos are never sent to a server."
 } 

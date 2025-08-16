@@ -18,7 +18,7 @@ const LanguageSelector = () => {
   };
 
   return (
-    <div className="flex justify-center space-x-4 my-4">
+    <div className="flex justify-center space-x-4">
       {languages.map((lng) => (
         <button
           key={lng.code}

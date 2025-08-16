@@ -1,15 +1,15 @@
 {
-  "home_title": "先祖は誰？",
-  "home_subtitle": "写真一枚でルーツを探ろう！",
-  "button_select_photo": "写真を選ぶ 📸",
-  "text_loading_model": "AI準備中… ちょっと待ってね！",
-  "text_analyzing": "写真を分析中…",
+  "home_title": "あなたの先祖は誰ですか？",
+  "home_subtitle": "写真一枚でルーツを探ってみましょう。",
+  "button_select_photo": "写真を選択 📸",
+  "text_loading_model": "AIを準備中です。少々お待ちください。",
+  "text_analyzing": "写真を分析しています…",
   "card_title": "私の先祖カード",
-  "card_interpretation": "あなたの顔は{{country}}の人に一番似てる！{{percent}}%もそっくり。特に{{country}}の人の特徴がよく出てる感じ？",
+  "card_interpretation": "あなたの顔は{{country}}の人に一番似ていますね！{{percent}}%の類似度です。特に{{country}}の人の特徴がよく表れています。",
   "hashtag_ancestry": "#先祖探し",
   "hashtag_ai_face": "#AI顔分析",
   "button_share": "シェアする",
-  "button_try_again": "もう一回",
+  "button_try_again": "再挑戦",
   "country_british": "イギリス",
   "country_chinese": "中国",
   "country_ethiopian": "エチオピア",
@@ -21,5 +21,6 @@
   "country_mexican": "メキシコ",
   "country_nigerian": "ナイジェリア",
   "country_russian": "ロシア",
-  "country_saudi": "サウジアラビア"
+  "country_saudi": "サウジアラビア",
+  "privacy_notice": "ご安心ください。写真はサーバーに送信されません。"
 } 

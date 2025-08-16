@@ -1,11 +1,11 @@
 {
-  "home_title": "你的祖先是谁？",
-  "home_subtitle": "一张照片就能找到你的根。",
-  "button_select_photo": "选张照片 📸",
-  "text_loading_model": "AI正在准备... 稍等一下！",
-  "text_analyzing": "正在分析你的照片...",
+  "home_title": "您的祖先是谁？",
+  "home_subtitle": "用一张照片就能发现您的血统。",
+  "button_select_photo": "选择照片 📸",
+  "text_loading_model": "AI正在准备中，请稍候...",
+  "text_analyzing": "正在分析您的照片...",
   "card_title": "我的祖先卡",
-  "card_interpretation": "你长得最像{{country}}人！有{{percent}}%的相似度。一看就有{{country}}人的feel～",
+  "card_interpretation": "您长得最像{{country}}人！有{{percent}}%的相似度。您的外貌特征与{{country}}人非常吻合。",
   "hashtag_ancestry": "#寻找祖先",
   "hashtag_ai_face": "#AI人脸分析",
   "button_share": "分享",
@@ -21,5 +21,6 @@
   "country_mexican": "墨西哥",
   "country_nigerian": "尼日利亚",
   "country_russian": "俄罗斯",
-  "country_saudi": "沙特阿拉伯"
+  "country_saudi": "沙特阿拉伯",
+  "privacy_notice": "请放心！您的照片不会被上传到服务器。"
 } 
