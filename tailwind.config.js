@@ -10,7 +10,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['Gaegu', 'system-ui', 'sans-serif'],
       },
       colors: {
         primary: {

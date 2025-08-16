@@ -1,30 +1,29 @@
 import { useEffect, useState, useRef } from 'react';
+import html2canvas from 'html2canvas';
 import { initModel, predict } from './ai_model.js';
+import AncestryCard from './components/AncestryCard';
 
 function App() {
   const [isModelLoading, setIsModelLoading] = useState(true);
   const [predictions, setPredictions] = useState([]);
   const [uploadedImage, setUploadedImage] = useState(null);
   const imageRef = useRef(null);
+  const cardRef = useRef(null);
   
-  // 웹사이트가 처음 실행될 때 딱 한 번 AI 모델을 로딩합니다.
   useEffect(() => {
     initModel().then(() => {
       setIsModelLoading(false);
     });
   }, []);
 
-  // 파일 업로드 input의 내용이 바뀔 때 실행되는 함수
   const handleImageChange = async (event) => {
     const file = event.target.files[0];
     if (!file) return;
 
-    // 예측 결과를 초기화하고, 업로드된 이미지 URL을 화면에 보여주기 위해 저장합니다.
     setPredictions([]);
     setUploadedImage(URL.createObjectURL(file)); 
   };
   
-  // '분석하기' 버튼을 눌렀을 때 실행되는 함수
   const handlePredict = async () => {
     if (!imageRef.current) return;
     const results = await predict(imageRef.current);
@@ -33,53 +32,116 @@ function App() {
     }
   }
 
-  return (
-    <div className="container">
-      <h1>당신의 조상은 어느 나라 사람일까요?</h1>
-      <p className="subtitle">AI로 얼굴 사진을 분석하여 혈통을 예측해 보세요!</p>
+  const handleShare = async () => {
+    if (!cardRef.current) return;
+  
+    try {
+      const canvas = await html2canvas(cardRef.current, {
+        useCORS: true,
+        allowTaint: true,
+        scale: 2, 
+      });
       
-      <div className="upload-box">
-        <input type="file" id="imageUpload" accept="image/*" onChange={handleImageChange} />
-        <label htmlFor="imageUpload" className="upload-label">
-          사진 선택하기
-        </label>
-      </div>
+      canvas.toBlob(async (blob) => {
+        if (!blob) {
+          alert('이미지 변환에 실패했습니다.');
+          return;
+        }
+  
+        const file = new File([blob], 'my-ancestry-card.png', { type: 'image/png' });
+        
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          await navigator.share({
+            files: [file],
+            title: '나의 조상 카드',
+            text: 'AI로 내 얼굴의 혈통을 분석해봤어요!',
+          });
+        } else {
+          const link = document.createElement('a');
+          link.href = URL.createObjectURL(blob);
+          link.download = 'my-ancestry-card.png';
+          link.click();
+          URL.revokeObjectURL(link.href);
+        }
+      });
+    } catch (error) {
+      console.error('공유하기 실패:', error);
+      alert('공유하는 중 오류가 발생했습니다.');
+    }
+  };
 
-      {isModelLoading && <p className="loading-text">AI 모델을 준비하는 중입니다... (약 10초 소요)</p>}
-      
-      {uploadedImage && (
-        <div className="result-area">
-          <img 
-            ref={imageRef} 
-            src={uploadedImage} 
-            alt="Uploaded" 
-            className="uploaded-image"
-            onLoad={handlePredict} // 이미지가 화면에 완전히 로드되면 자동으로 분석 실행
-          />
-          
-          {predictions.length > 0 ? (
-            <div className="prediction-list">
-              <h2>분석 결과</h2>
-              <ul>
-                {predictions.map((p, index) => (
-                  <li key={index}>
-                    <span className="country-name">{p.country.charAt(0).toUpperCase() + p.country.slice(1)}</span>
-                    <div className="progress-bar-container">
-                      <div 
-                        className="progress-bar" 
-                        style={{ width: `${p.probability * 100}%` }}
-                      ></div>
-                    </div>
-                    <span className="percentage">{(p.probability * 100).toFixed(1)}%</span>
-                  </li>
-                ))}
-              </ul>
+  const handleReset = () => {
+    setPredictions([]);
+    setUploadedImage(null);
+  };
+
+  return (
+    <div className="min-h-screen bg-pink-100 py-8 px-4 font-sans">
+      <div className="container max-w-md mx-auto">
+        {!predictions.length ? (
+          // 홈 화면 - 분석 전
+          <>
+            <div className="text-center mb-8">
+              <h1 className="text-5xl font-bold text-gray-800 mb-2">나의 조상은?!</h1>
+              <p className="text-lg text-gray-600">얼굴 사진으로 혈통을 알아봐요!</p>
             </div>
-          ) : (
-             <p className="loading-text">이미지를 분석하는 중입니다...</p>
-          )}
-        </div>
-      )}
+            
+            <div className="bg-white rounded-2xl shadow-lg p-6 mb-8">
+              <div className="upload-box">
+                <input 
+                  type="file" 
+                  id="imageUpload" 
+                  accept="image/*" 
+                  onChange={handleImageChange}
+                  className="hidden" 
+                />
+                <label 
+                  htmlFor="imageUpload" 
+                  className="block w-full py-4 px-4 text-center bg-yellow-400 text-gray-800 rounded-xl cursor-pointer hover:bg-yellow-500 transition-colors text-xl font-bold"
+                >
+                  사진 고르기 📸
+                </label>
+              </div>
+            </div>
+
+            {isModelLoading && (
+              <p className="text-center text-gray-600">
+                AI 모델을 준비하는 중입니다... (약 10초 소요)
+              </p>
+            )}
+
+            {uploadedImage && !predictions.length && (
+              <>
+                <p className="text-center text-gray-600">이미지를 분석하는 중입니다...</p>
+                {/* 분석을 위해 화면에는 보이지 않지만 로드되어야 하는 이미지 */}
+                <img 
+                  ref={imageRef} 
+                  src={uploadedImage} 
+                  alt="For analysis" 
+                  className="hidden"
+                  onLoad={handlePredict}
+                />
+              </>
+            )}
+          </>
+        ) : (
+          // 결과 화면 - 분석 후
+          <>
+            <AncestryCard
+              ref={cardRef}
+              image={uploadedImage}
+              predictions={predictions}
+              onShare={handleShare}
+            />
+            <button
+              onClick={handleReset}
+              className="mt-4 w-full py-3 px-4 bg-gray-400 text-white rounded-xl hover:bg-gray-500 transition-colors font-bold"
+            >
+              다시 해보기
+            </button>
+          </>
+        )}
+      </div>
     </div>
   );
 }
