@@ -5,7 +5,12 @@
   "text_loading_model": "Getting the AI ready... Please wait a moment.",
   "text_analyzing": "Analyzing your picture...",
   "card_title": "My Ancestry Card",
-  "card_interpretation": "You look most like someone from {{country}}! There's a {{percent}}% match. You definitely have those classic {{country}} features.",
+  "interpretation_pure": "Whoa 😳 {{percent}}%... That's super rare! You're practically a national treasure of {{country}}!",
+  "interpretation_dominant": "{{country}} {{percent}}%? You're a true native!!",
+  "interpretation_balanced": "So unique! A {{country1}} ✨ {{country2}} ✨ Hybrid Edition! Like a limited edition 🪄",
+  "interpretation_clear_top_two": "Interesting! You definitely have recent ancestors from {{country1}} and {{country2}}!!",
+  "interpretation_global": "WOW🤩 Such rare global DNA!! So diverse!!!",
+  "interpretation_default": "Oh... {{country}} vibes, {{percent}}% loaded ⚡",
   "hashtag_ancestry": "#ancestryfinder",
   "hashtag_ai_face": "#AIfaceanalysis",
   "button_share": "Share",
@@ -22,5 +27,11 @@
   "country_nigerian": "Nigerian",
   "country_russian": "Russian",
   "country_saudi": "Saudi Arabian",
-  "privacy_notice": "Don't worry! Your photos are never sent to a server."
+  "privacy_notice": "Don't worry! Your photos are never sent to a server.",
+  "gender_female": "Female",
+  "gender_male": "Male",
+  "modal_title_notice": "Notice",
+  "modal_content_male_soon": "Sorry, currently only the female model is available for analysis. The male model will be updated soon!",
+  "button_close": "Close",
+  "button_go_home": "Back to Home"
 } 

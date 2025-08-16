@@ -5,7 +5,12 @@
   "text_loading_model": "Preparando la IA... Por favor, espere un momento.",
   "text_analyzing": "Analizando su foto...",
   "card_title": "Mi tarjeta de ancestros",
-  "card_interpretation": "¡Usted se parece más a alguien de {{country}}! Hay un {{percent}}% de coincidencia. Definitivamente tiene esos rasgos clásicos de {{country}}.",
+  "interpretation_pure": "¡Guau 😳 {{percent}}%...! ¡Eso es súper raro! ¡Eres prácticamente un tesoro nacional de {{country}}!",
+  "interpretation_dominant": "¿{{country}} {{percent}}%? ¡Eres un verdadero nativo!",
+  "interpretation_balanced": "¡Qué único! ¡Una edición híbrida de {{country1}} ✨ {{country2}}! Como una edición limitada 🪄",
+  "interpretation_clear_top_two": "¡Interesante! ¡Definitivamente tienes ancestros recientes de {{country1}} y {{country2}}!",
+  "interpretation_global": "¡WOW🤩 ¡Qué ADN global tan raro! ¡Tan diverso!",
+  "interpretation_default": "Oh... vibras de {{country}}, {{percent}}% cargadas ⚡",
   "hashtag_ancestry": "#búsquedadeancestros",
   "hashtag_ai_face": "#análisisfacialIA",
   "button_share": "Compartir",
@@ -22,5 +27,11 @@
   "country_nigerian": "Nigeriano",
   "country_russian": "Ruso",
   "country_saudi": "Saudí",
-  "privacy_notice": "¡No se preocupe! Sus fotos nunca se envían a un servidor."
+  "privacy_notice": "¡No se preocupe! Sus fotos nunca se envían a un servidor.",
+  "gender_female": "Femenino",
+  "gender_male": "Masculino",
+  "modal_title_notice": "Aviso",
+  "modal_content_male_soon": "Lo sentimos, actualmente solo el modelo femenino está disponible para análisis. ¡El modelo masculino se actualizará pronto!",
+  "button_close": "Cerrar",
+  "button_go_home": "Volver al inicio"
 } 

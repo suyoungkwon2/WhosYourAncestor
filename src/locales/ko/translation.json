@@ -5,7 +5,12 @@
   "text_loading_model": "AI 모델을 준비 중입니다. 잠시만 기다려주세요.",
   "text_analyzing": "사진을 분석하고 있습니다...",
   "card_title": "나의 조상 카드",
-  "card_interpretation": "당신의 얼굴은 {{country}} 사람과 가장 닮았네요! {{percent}}%의 유사도를 보입니다. 특히 {{country}} 사람들의 특징이 잘 나타나고 있어요.",
+  "interpretation_pure": "와우 😳 {{percent}}%라니…  절대 흔치 않습니다! 거의 {{country}} 국보인데요?!",
+  "interpretation_dominant": "{{country}} {{percent}}%라니, 엄청난 원조 토박이에요!!",
+  "interpretation_balanced": "완전 희귀한데요?!  {{country1}} ✨ {{country2}} ✨ 하이브리드 에디션! 한정판 같아요 🪄",
+  "interpretation_clear_top_two": "흥미롭군요, 가까운 조상에  {{country1}}, {{country2}} 이 있는게 분명해요!!",
+  "interpretation_global": "WOW🤩 흔치 않은 글로벌 DNA!! 역대급 다채로움!!!",
+  "interpretation_default": "오… {{country}} 분위기 {{percent}}% 충전 완료 ⚡",
   "hashtag_ancestry": "#조상찾기",
   "hashtag_ai_face": "#AI얼굴분석",
   "button_share": "공유하기",
@@ -22,5 +27,11 @@
   "country_nigerian": "나이지리아",
   "country_russian": "러시아",
   "country_saudi": "사우디아라비아",
-  "privacy_notice": "안심하세요! 사진은 서버로 전송되지 않습니다."
+  "privacy_notice": "안심하세요! 사진은 서버로 전송되지 않습니다.",
+  "gender_female": "여성",
+  "gender_male": "남성",
+  "modal_title_notice": "알림",
+  "modal_content_male_soon": "죄송합니다, 현재는 여성 모델만 분석이 가능해요. 남성 모델도 곧 업데이트될 예정입니다!",
+  "button_close": "닫기",
+  "button_go_home": "홈으로 돌아가기"
 } 

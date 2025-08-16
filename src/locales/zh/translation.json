@@ -5,7 +5,12 @@
   "text_loading_model": "AI正在准备中，请稍候...",
   "text_analyzing": "正在分析您的照片...",
   "card_title": "我的祖先卡",
-  "card_interpretation": "您长得最像{{country}}人！有{{percent}}%的相似度。您的外貌特征与{{country}}人非常吻合。",
+  "interpretation_pure": "哇哦😳 {{percent}}%... 这太罕见了！您简直是{{country}}的国宝！",
+  "interpretation_dominant": "{{country}}血统{{percent}}%？您是真正的原住民！",
+  "interpretation_balanced": "太稀有了！{{country1}} ✨ {{country2}} ✨ 混合版！就像限量款一样🪄",
+  "interpretation_clear_top_two": "真有趣！您的近代祖先中一定有{{country1}}人和{{country2}}人！",
+  "interpretation_global": "WOW🤩 罕见的全球DNA！前所未有的多样性！",
+  "interpretation_default": "哦… {{country}}氛围{{percent}}%充电完成⚡",
   "hashtag_ancestry": "#寻找祖先",
   "hashtag_ai_face": "#AI人脸分析",
   "button_share": "分享",
@@ -22,5 +27,11 @@
   "country_nigerian": "尼日利亚",
   "country_russian": "俄罗斯",
   "country_saudi": "沙特阿拉伯",
-  "privacy_notice": "请放心！您的照片不会被上传到服务器。"
+  "privacy_notice": "请放心！您的照片不会被上传到服务器。",
+  "gender_female": "女性",
+  "gender_male": "男性",
+  "modal_title_notice": "通知",
+  "modal_content_male_soon": "抱歉，目前只能分析女性模型。男性模型即将更新！",
+  "button_close": "关闭",
+  "button_go_home": "返回首页"
 } 

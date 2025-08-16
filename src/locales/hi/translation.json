@@ -5,7 +5,12 @@
   "text_loading_model": "AI तैयार हो रहा है... कृपया प्रतीक्षा करें।",
   "text_analyzing": "आपकी तस्वीर का विश्लेषण हो रहा है...",
   "card_title": "मेरा पूर्वज कार्ड",
-  "card_interpretation": "आप सबसे ज्यादा {{country}} के किसी व्यक्ति की तरह दिखते हैं! {{percent}}% का मेल है। आप में निश्चित रूप से वे क्लासिक {{country}} विशेषताएँ हैं।",
+  "interpretation_pure": "वाह 😳 {{percent}}%... यह बहुत दुर्लभ है! आप व्यावहारिक रूप से {{country}} का राष्ट्रीय खजाना हैं!",
+  "interpretation_dominant": "{{country}} {{percent}}%? आप एक सच्चे मूल निवासी हैं!!",
+  "interpretation_balanced": "कितना अनोखा! एक {{country1}} ✨ {{country2}} ✨ हाइब्रिड संस्करण! एक सीमित संस्करण की तरह 🪄",
+  "interpretation_clear_top_two": "दिलचस्प! आपके हाल के पूर्वजों में निश्चित रूप से {{country1}} और {{country2}} से कोई है!!",
+  "interpretation_global": "वाह🤩 ऐसा दुर्लभ वैश्विक डीएनए !! अब तक का सबसे विविध !!!",
+  "interpretation_default": "ओह... {{country}} वाइब्स, {{percent}}% लोड हो गया ⚡",
   "hashtag_ancestry": "#पूर्वजखोज",
   "hashtag_ai_face": "#AIचेहराविश्लेषण",
   "button_share": "शेयर करें",
@@ -22,5 +27,11 @@
   "country_nigerian": "नाइजीरियाई",
   "country_russian": "रूसी",
   "country_saudi": "सऊदी अरब",
-  "privacy_notice": "चिंता न करें! आपकी तस्वीरें कभी भी सर्वर पर नहीं भेजी जाती हैं।"
+  "privacy_notice": "चिंता न करें! आपकी तस्वीरें कभी भी सर्वर पर नहीं भेजी जाती हैं।",
+  "gender_female": "महिला",
+  "gender_male": "पुरुष",
+  "modal_title_notice": "सूचना",
+  "modal_content_male_soon": "क्षमा करें, वर्तमान में केवल महिला मॉडल विश्लेषण के लिए उपलब्ध है। पुरुष मॉडल जल्द ही अपडेट किया जाएगा!",
+  "button_close": "बंद करें",
+  "button_go_home": "होम पर वापस जाएं"
 } 

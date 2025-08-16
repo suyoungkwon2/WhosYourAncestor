@@ -1,5 +1,6 @@
 import forms from '@tailwindcss/forms'
 import typography from '@tailwindcss/typography'
+import plugin from 'tailwindcss/plugin'
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -13,7 +14,7 @@ export default {
         sans: ['Roboto', 'system-ui', 'sans-serif'],
       },
       colors: {
-        'ivory': '#FAF9F6',
+        'ivory': '#FAF0E6',
         primary: {
           50: '#eff6ff',
           500: '#3b82f6',
@@ -26,5 +27,12 @@ export default {
   plugins: [
     forms,
     typography,
+    plugin(function({ addUtilities }) {
+      addUtilities({
+        '.text-shadow': {
+          textShadow: '0 2px 4px rgba(0, 0, 0, 0.4)',
+        },
+      })
+    }),
   ],
 } 

@@ -5,7 +5,12 @@
   "text_loading_model": "AIを準備中です。少々お待ちください。",
   "text_analyzing": "写真を分析しています…",
   "card_title": "私の先祖カード",
-  "card_interpretation": "あなたの顔は{{country}}の人に一番似ていますね！{{percent}}%の類似度です。特に{{country}}の人の特徴がよく表れています。",
+  "interpretation_pure": "わぉ😳 {{percent}}%… 超レアじゃないですか！ほとんど{{country}}の国宝レベル？！",
+  "interpretation_dominant": "{{country}}が{{percent}}%なんて、正真正銘の生粋ですね！！",
+  "interpretation_balanced": "すごく珍しい！ {{country1}}✨{{country2}}✨のハイブリッド版！まるで限定品みたい🪄",
+  "interpretation_clear_top_two": "興味深いですね。近いご先祖に{{country1}}と{{country2}}の方がいるに違いありません！",
+  "interpretation_global": "WOW🤩 珍しいグローバルDNA！！史上最高の多様性！！！",
+  "interpretation_default": "お… {{country}}の雰囲気{{percent}}%チャージ完了⚡",
   "hashtag_ancestry": "#先祖探し",
   "hashtag_ai_face": "#AI顔分析",
   "button_share": "シェアする",
@@ -22,5 +27,11 @@
   "country_nigerian": "ナイジェリア",
   "country_russian": "ロシア",
   "country_saudi": "サウジアラビア",
-  "privacy_notice": "ご安心ください。写真はサーバーに送信されません。"
+  "privacy_notice": "ご安心ください。写真はサーバーに送信されません。",
+  "gender_female": "女性",
+  "gender_male": "男性",
+  "modal_title_notice": "お知らせ",
+  "modal_content_male_soon": "申し訳ありませんが、現在は女性モデルのみ分析可能です。男性モデルも近日中にアップデート予定です！",
+  "button_close": "閉じる",
+  "button_go_home": "ホームに戻る"
 } 
