@@ -5,7 +5,6 @@ import { initModel, predict } from './ai_model.js';
 import AncestryCard from './components/AncestryCard';
 import LanguageSelector from './components/LanguageSelector';
 import InfoModal from './components/InfoModal';
-import passportImage from '/img_passport.png'; // 경로 수정
 
 function App() {
   const { t } = useTranslation();
@@ -76,11 +75,6 @@ function App() {
       console.error('공유하기 실패:', error);
       alert('공유하는 중 오류가 발생했습니다.');
     }
-  };
-
-  const handleReset = () => {
-    setPredictions([]);
-    setUploadedImage(null);
   };
 
   const handleGenderSelect = (gender) => {
