@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jamyeah.com/whosyourancestor/sitemap.xml 
