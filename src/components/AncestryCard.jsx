@@ -23,76 +23,104 @@ const AncestryCard = forwardRef(({ image, predictions, onShare }, ref) => {
     if (prob1 < 30) return t('interpretation_global');
     return t('interpretation_default', { country: country1Name, percent: prob1.toFixed(1) });
   };
+  
+  const titleChars = t('card_title_chars').split('');
+  const firstPredictionCountry = predictions?.[0]?.country.replace('_female', '');
+  const hashtagCountry = firstPredictionCountry ? t(countryData[firstPredictionCountry]?.nameKey) : '';
+
 
   return (
-    <div ref={ref} className="ancestry-card bg-white rounded-xl shadow-lg p-6 max-w-sm mx-auto">
-      <h2 className="text-2xl font-bold text-center mb-4">{t('card_title')}</h2>
-      
-      <div className="relative w-full aspect-square mb-4 rounded-lg overflow-hidden">
-        <img 
-          src={image} 
-          alt="Uploaded face" 
-          className="w-full h-full object-cover"
-        />
-
-        {/* 전체 오버레이 및 중앙 정렬 컨테이너 */}
-        <div className="absolute inset-0 flex items-center justify-center bg-black/30 p-4">
-          <div className="w-full space-y-3">
-            {topPredictions.map((p, index) => {
-              const countryName = p.country.replace('_female', '');
-              const data = countryData[countryName] || { emoji: '🏳️', color: '#cccccc', nameKey: 'country_unknown' };
-              
+    <div ref={ref} className="ancestry-card bg-white rounded-xl shadow-lg p-1 max-w-sm mx-auto">
+      <div className="bg-purple-300 rounded-lg p-0.5">
+        <div className="bg-white rounded-md p-5">
+          {/* Start of original content */}
+          <div className="flex justify-center items-center mb-6">
+            {titleChars.map((char, index) => {
+              const colors = [
+                'bg-green-400', 'bg-blue-400'
+              ];
+              const color = colors[index % colors.length];
               return (
-                <div key={index}>
-                  <div className="flex justify-between items-baseline mb-1 text-white">
-                    <span className="flex items-center text-base font-bold text-shadow">
-                      <span className="text-2xl mr-2">{data.emoji}</span>
-                      {t(data.nameKey)}
-                    </span>
-                    <span className="text-lg font-bold text-shadow">
-                      {(p.probability * 100).toFixed(1)}%
-                    </span>
-                  </div>
-                  <div className="w-full bg-gray-200/30 rounded-full h-2.5">
-                    <div 
-                      className="h-2.5 rounded-full" 
-                      style={{ 
-                        width: `${p.probability * 100}%`,
-                        backgroundColor: data.color,
-                      }}
-                    ></div>
-                  </div>
+                <div 
+                  key={index} 
+                  className={`w-10 h-10 rounded-full flex items-center justify-center ring-2 ring-white ${color} ${index > 0 ? '-ml-1' : ''}`}
+                >
+                  <span className="text-white font-bold text-lg">{char}</span>
                 </div>
               );
             })}
           </div>
+          
+          <div className="relative w-full aspect-square mb-4 rounded-lg overflow-hidden">
+            <img 
+              src={image} 
+              alt="Uploaded face" 
+              className="w-full h-full object-cover"
+            />
+
+            {/* 전체 오버레이 및 중앙 정렬 컨테이너 */}
+            <div className="absolute inset-0 flex items-center justify-center bg-black/30 p-4">
+              <div className="w-full space-y-3">
+                {topPredictions.map((p, index) => {
+                  const countryName = p.country.replace('_female', '');
+                  const data = countryData[countryName] || { emoji: '🏳️', color: '#cccccc', nameKey: 'country_unknown' };
+                  
+                  return (
+                    <div key={index}>
+                      <div className="flex justify-between items-baseline mb-1 text-white">
+                        <span className="flex items-center text-base font-bold text-shadow">
+                          <span className="text-2xl mr-2">{data.emoji}</span>
+                          {t(data.nameKey)}
+                        </span>
+                        <span className="text-lg font-bold text-shadow">
+                          {(p.probability * 100).toFixed(1)}%
+                        </span>
+                      </div>
+                      <div className="w-full bg-gray-200/30 rounded-full h-2.5">
+                        <div 
+                          className="h-2.5 rounded-full" 
+                          style={{ 
+                            width: `${p.probability * 100}%`,
+                            backgroundColor: data.color,
+                          }}
+                        ></div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+
+          <p className="text-gray-700 text-sm mb-4 text-center">
+            {getInterpretation()}
+          </p>
+
+          {/* 해시태그 */}
+          <div className="flex flex-wrap gap-2 mb-4 justify-center">
+            <span className="bg-blue-100 text-blue-800 text-xs px-2.5 py-1 rounded-full">
+              {t('hashtag_ancestry')}
+            </span>
+            <span className="bg-blue-100 text-blue-800 text-xs px-2.5 py-1 rounded-full">
+              {t('hashtag_ai_face')}
+            </span>
+            {hashtagCountry && (
+              <span className="bg-blue-100 text-blue-800 text-xs px-2.5 py-1 rounded-full">
+                #{hashtagCountry}
+              </span>
+            )}
+          </div>
+
+          {/* 공유하기 버튼 */}
+          <button
+            onClick={onShare}
+            className="w-full bg-purple-500 text-white py-3 rounded-xl hover:bg-purple-600 transition-colors text-lg font-bold"
+          >
+            {t('button_share')}
+          </button>
+          {/* End of original content */}
         </div>
       </div>
-
-      <p className="text-gray-700 text-sm mb-4 text-center">
-        {getInterpretation()}
-      </p>
-
-      {/* 해시태그 */}
-      <div className="flex flex-wrap gap-2 mb-4 justify-center">
-        <span className="bg-blue-100 text-blue-800 text-xs px-2.5 py-1 rounded-full">
-          {t('hashtag_ancestry')}
-        </span>
-        <span className="bg-blue-100 text-blue-800 text-xs px-2.5 py-1 rounded-full">
-          {t('hashtag_ai_face')}
-        </span>
-        <span className="bg-blue-100 text-blue-800 text-xs px-2.5 py-1 rounded-full">
-          #{t(countryData[predictions[0]?.country.replace('_female', '')]?.nameKey)}
-        </span>
-      </div>
-
-      {/* 공유하기 버튼 */}
-      <button
-        onClick={onShare}
-        className="w-full bg-purple-500 text-white py-3 rounded-xl hover:bg-purple-600 transition-colors text-lg font-bold"
-      >
-        {t('button_share')}
-      </button>
     </div>
   );
 });

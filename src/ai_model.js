@@ -13,10 +13,10 @@ export async function initModel() {
     console.log("AI Graph 모델 로딩을 시작합니다...");
     
     // --- 핵심 수정: tf.loadLayersModel -> tf.loadGraphModel ---
-    const modelURL = '/web_model_12_countries/model.json';
+    const modelURL = `${import.meta.env.BASE_URL}web_model_12_countries/model.json`;
     model = await tf.loadGraphModel(modelURL);
 
-    const labelsURL = '/model_info_12_countries.json';
+    const labelsURL = `${import.meta.env.BASE_URL}model_info_12_countries.json`;
     const response = await fetch(labelsURL);
     const modelInfo = await response.json();
     labels = modelInfo.labels;

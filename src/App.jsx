@@ -95,7 +95,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[url('/img_background.png')] bg-cover bg-center py-8 px-4 font-sans">
+    <div className="min-h-screen bg-cover bg-center py-8 px-4 font-sans" style={{backgroundImage: `url(${import.meta.env.BASE_URL}img_background.png)`}}>
       <InfoModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
@@ -116,7 +116,7 @@ function App() {
           <>
             {/* 배경 여권 이미지 */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <img src="/img_passport2.png" alt="Passport illustration" className="w-72 h-auto transform translate-y-11" />
+              <img src={`${import.meta.env.BASE_URL}img_passport2.png`} alt="Passport illustration" className="w-72 h-auto transform translate-y-11" />
             </div>
 
             {/* 전경 콘텐츠 */}
@@ -137,13 +137,13 @@ function App() {
               <div className="flex justify-center space-x-4 mb-6">
                 <button
                   onClick={() => handleGenderSelect('female')}
-                  className={`py-2 px-6 rounded-full text-lg transition-colors ${selectedGender === 'female' ? 'bg-purple-500 text-white font-bold' : 'bg-gray-200'}`}
+                  className={`py-2 px-6 rounded-full text-lg transition-colors flex items-center ${selectedGender === 'female' ? 'bg-purple-500 text-white font-bold' : 'bg-gray-200'}`}
                 >
                   <span className="mr-2">♀</span>{t('gender_female')}
                 </button>
                 <button
                   onClick={() => handleGenderSelect('male')}
-                  className="py-2 px-6 rounded-full text-lg bg-gray-200 transition-colors"
+                  className="py-2 px-6 rounded-full text-lg bg-gray-200 transition-colors flex items-center"
                 >
                   <span className="mr-2">♂</span>{t('gender_male')}
                 </button>
@@ -188,18 +188,20 @@ function App() {
               predictions={predictions}
               onShare={handleShare}
             />
-            <button
-              onClick={handleTryAgain}
-              className="mt-4 w-full py-2 px-4 bg-gray-500 text-white rounded-xl hover:bg-gray-600 transition-colors font-bold text-lg"
-            >
-              {t('button_try_again')}
-            </button>
-            <button
-              onClick={handleGoHome}
-              className="mt-2 w-full text-center text-sm text-gray-500 hover:text-gray-700 underline"
-            >
-              {t('button_go_home')}
-            </button>
+            <div className="max-w-sm mx-auto">
+              <button
+                onClick={handleTryAgain}
+                className="mt-4 w-full py-2 px-4 bg-gray-500 text-white rounded-xl hover:bg-gray-600 transition-colors font-bold text-lg"
+              >
+                {t('button_try_again')}
+              </button>
+              <button
+                onClick={handleGoHome}
+                className="mt-2 w-full text-center text-sm text-gray-500 hover:text-gray-700 underline"
+              >
+                {t('button_go_home')}
+              </button>
+            </div>
           </>
         )}
       </div>
